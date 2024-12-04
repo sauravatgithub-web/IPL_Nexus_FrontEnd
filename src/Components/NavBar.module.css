@@ -1,0 +1,111 @@
+/* Wrapper Styles */
+.wrapper {
+    height: 12vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+    border-bottom: 5px solid gold;
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Header Styles */
+.header {
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-size: 1.8rem;
+    text-align: left;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.teamName {
+    color: gold;
+    text-shadow: 0px 2px 5px rgba(255, 215, 0, 0.7);
+}
+
+/* Links Styles */
+.links {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+    margin-right: 30px;
+}
+
+.links img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 2px solid white;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.links img:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.8);
+}
+
+.links li {
+    margin: 0 15px;
+}
+
+.links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.links a:hover {
+    color: gold;
+}
+
+/* Button Styles */
+.btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+/* Profile Image Styles */
+.pimage {
+    height: 50px;
+    width: 50px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .header {
+        font-size: 1.4rem;
+    }
+
+    .btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+
+    .links img {
+        height: 40px;
+        width: 40px;
+    }
+}
