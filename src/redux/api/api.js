@@ -16,11 +16,11 @@ const api = createApi({
         }),
 
         updateCart: builder.mutation({
-            query: ({ userId, productId }) => ({
+            query: ({ userId, cart }) => ({
                 url: "user/updateCart",
                 method: "PUT",
                 credentials: "include",
-                body: { userId, productId },
+                body: { userId, cart },
             }),
             invalidatesTags: ["User"]
         })

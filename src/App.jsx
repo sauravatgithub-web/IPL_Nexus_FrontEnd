@@ -7,6 +7,7 @@ import { Toaster } from 'react-hot-toast';
 import { userExists, userNotExists } from './redux/reducers/auth.js';
 import { LayoutLoader } from './Components/Loaders.jsx'
 import ProtectRoute from './Components/Auth/ProtectRoute.jsx'
+import Cart from './Components/Cart.jsx'
 
 const Authentication = lazy(() => import("./Pages/Authentication.js"));
 const ErrorPage = lazy(() => import("./Pages/ErrorPage.js"));
@@ -45,6 +46,7 @@ function App() {
           element: <RootPage />,
           children: [
             { index: true, element: <DashBoard /> },
+            { path: "cart", element: <Cart /> },
           ]
         },
       ],

@@ -3,57 +3,65 @@ const teamThemes = {
         teamName: "Royal Challengers Bangalore",
         background: "linear-gradient(to right, black, red)",
         textColor: "black",
-        cardBackground: "#FFEBEE",
+        cardBackground: "#fafafa",
         buttonBg: "#FFB300",
+        titleColor: "black"
     },
     "mumbai-indians": {
         teamName: "Mumbai Indians",
         background: "linear-gradient(to right, blue, #FFC107)",
         textColor: "text-white",
-        cardBackground: "#2d9dec", // Light blue
-        buttonBg: "#2563EB",
+        cardBackground: "#2d9dec",
+        buttonBg: "#1c449b",
+        titleColor: "#02205f"
     },
     "chennai-super-kings": {
         teamName: "Chennai Super Kings",
-        background: "linear-gradient(to right, #FFEB3B, #FFC107)",
+        background: "linear-gradient(to right, #FFEB3B, #076aff)",
         textColor: "black",
-        cardBackground: "#FFF9C4",
-        buttonBg: "#B77A00",
+        cardBackground: "#eaf510",
+        buttonBg: "#c62f01",
+        titleColor: "#0b023e",
     },
     "kolkata-knight-riders": {
         teamName: "Kolkata Knight Riders",
-        background: "bg-purple-900",
+        background: "linear-gradient(to right, #58049d, #fbff07)",
         textColor: "text-white",
-        cardBackground: "#E1BEE7", // Lavender
-        buttonBg: "bg-purple-600",
+        cardBackground: "#cd4ae4",
+        buttonBg: "#35033e",
+        titleColor: "#35033e",
     },
     "delhi-capitals": {
         teamName: "Delhi Capitals",
-        background: "bg-blue-700",
-        textColor: "text-white",
-        cardBackground: "#BBDEFB", // Sky blue
-        buttonBg: "bg-blue-800",
+        background: "linear-gradient(to right, #000080, #1216f5)",
+        textColor: "white",
+        cardBackground: "#096ec1", 
+        buttonBg: "#a80611",
+        titleColor: "#af0614",
     },
     "punjab-kings": {
         teamName: "Punjab Kings",
-        background: "bg-red-800",
-        textColor: "text-white",
-        cardBackground: "#FFEBEE", // Light pink
-        buttonBg: "bg-red-700",
+        background: "linear-gradient(to right, #ca0505, #f58b12)",
+        textColor: "black",
+        cardBackground: "#fdfafa",
+        buttonBg: "red",
+        titleColor: "#a6af06",
     },
     "rajasthan-royals": {
         teamName: "Rajasthan Royals",
-        background: "bg-pink-700",
-        textColor: "text-white",
-        cardBackground: "#F8BBD0", // Light pink
-        buttonBg: "bg-pink-800",
+        background: "linear-gradient(to right, #0b05a9, #f512e6)",
+        textColor: "white",
+        cardBackground: "#e71dc9",
+        buttonBg: "#b0079f",
+        titleColor: "#950693",
     },
     "sunrisers-hyderabad": {
         teamName: "Sunrisers Hyderabad",
-        background: "bg-orange-700",
-        textColor: "text-white",
-        cardBackground: "#FFE0B2", // Light orange
-        buttonBg: "bg-orange-800",
+        background: "linear-gradient(to right, #a93c05, #f58f12)",
+        textColor: "white",
+        cardBackground: "#e7501d",
+        buttonBg: "#b00707",
+        titleColor: "#95060d",
     },
     "gujarat-titans": {
         teamName: "Gujarat Titans",
@@ -61,14 +69,16 @@ const teamThemes = {
         textColor: "#black", 
         cardBackground: "white", 
         buttonBg: "gold", 
+        titleColor: "#140568",
     },
 
     "lucknow-super-giants": {
         teamName: "Lucknow Super Giants",
-        background: "linear-gradient(to right, #a84d02, #FFFFFF, #008000)", // Orange to White to Green
+        background: "linear-gradient(to right, #a84d02, #FFFFFF, #008000)",
         textColor: "#FFFFFF", 
         cardBackground: "#3b9aee", 
         buttonBg: "#1b685f", 
+        titleColor: "#044720",
     },
 
 };

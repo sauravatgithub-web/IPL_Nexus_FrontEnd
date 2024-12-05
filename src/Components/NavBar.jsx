@@ -7,7 +7,8 @@ import { userNotExists } from '../redux/reducers/auth';
 import axios from 'axios';
 import { server } from '../Assests/config';
 import toast from 'react-hot-toast';
-import teamMap from '../Assests/team';
+import logo from "../Assests/logo.jpg";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 export default function NavBar() {
   const { user } = useSelector((state) => state.auth);
@@ -25,11 +26,14 @@ export default function NavBar() {
 
   return (
     <div className={classes.wrapper}>
-      <div className={classes.header}>
-        Welcome to the <span className={classes.teamName}>{teamMap.get(user.iplTeam)}</span> Fan Store!
-      </div>
+      <NavLink to = "/" className={classes.brand}><img src={logo} alt="Logo" /></NavLink>
 
       <ul className={classes.links}>
+        <li className={classes.icon}>
+          <NavLink to={'cart'} className={({ isActive }) => (isActive ? classes.active : undefined)}>
+            <ShoppingCartIcon/>
+          </NavLink>
+        </li>
         <li className={classes.pimage}>
           <NavLink to={`user/${user?._id}`} className={({ isActive }) => (isActive ? classes.active : undefined)}>
             <img src={pphoto} alt="Profile" />

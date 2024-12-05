@@ -2,49 +2,64 @@ import React, { useEffect, useState } from "react";
 import teamThemes from "../data/teamThemes";
 import classes from "./DashBoard.module.css";
 import { useSelector } from "react-redux";
-import { useGetProductsQuery } from "../redux/api/api";
-import { useErrors } from "../hooks/hooks";
-import toast from "react-hot-toast";
+import { useGetProductsQuery, useUpdateCartMutation } from "../redux/api/api";
+import Modal from "../Components/Modal";
+import { useAsyncMutation, useErrors } from '../hooks/hooks.jsx';
+import maps from '../Assests/team'
 
 const Dashboard = () => {
 	const [theme, setTheme] = useState({});
+	const [logo, setLogo] = useState();
 	const { user } = useSelector((state) => state.auth);
-	const [cart, setCart] = useState([]); 
+	const [cart, setCart] = useState([]);
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [selectedProduct, setSelectedProduct] = useState(null);
 
 	const { data, error, isLoading, isError } = useGetProductsQuery();
 	const errors = [{ isError: isError, error: error }];
 	useErrors(errors);
 
+	const [updateCart, isLoadingUpdateCart] = useAsyncMutation(useUpdateCartMutation);
+
 	useEffect(() => {
 		if (user?.iplTeam) {
 			setTheme(teamThemes[user.iplTeam] || {});
+			setLogo(maps.logoMap.get(user.iplTeam));
+		}
+		if (user?.cart) {
+			setCart(user.cart || []);
 		}
 	}, [user]);
 
-	const addToCart = (product) => {
-		setCart((prevCart) => {
-			const existingProduct = prevCart.find((item) => item.id === product.id);
-			if (existingProduct) {
-				return prevCart.map((item) =>
-					item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-				);
-			}
-			return [...prevCart, { ...product, quantity: 1 }];
-			
-		});
+	const addToCart = async (product) => {
+		const updatedCart = cart.map(item =>
+			item.product._id === product._id
+				? { ...item, count: item.count + 1 }
+				: item
+		);
+		
+		const isProductNew = !cart.some(item => item.product._id === product._id);
+		if (isProductNew) {
+			updatedCart.push({ product, count: 1, name: product.name });
+		}
+
+		setCart(updatedCart);
+		await updateCart("Adding to cart...", { userId: user._id, cart: updatedCart });
 	};
 
 	const handleBuyNow = (product) => {
-		if (product.quantity !== 0) {
-			window.location.href = product.productUrl;
-		} 
-		else {
-			toast.error("This product is not available for purchase at the moment.");
-		}
+		setSelectedProduct(product);
+		setIsModalOpen(true);
 	};
 
-	const viewCart = () => {
-		alert("Cart contents:\n" + cart.map(item => `${item.name} x${item.quantity}`).join("\n"));
+	const handleCloseModal = () => {
+		setIsModalOpen(false);
+		setSelectedProduct(null);
+	};
+
+	const handleConfirmPurchase = () => {
+		alert(`Purchase Confirmed: ${selectedProduct.name} for $${selectedProduct.price}`);
+		handleCloseModal();
 	};
 
 	if (isLoading) {
@@ -52,21 +67,19 @@ const Dashboard = () => {
 	}
 
 	if (isError) {
-		return <div>Error fetching products: {error.message}</div>; 
+		return <div>Error fetching products: {error.message}</div>;
 	}
 
 	return (
 		<div className={`min-h-screen ${classes.commonStyle}`} style={{ background: theme.background }}>
-			<button
-				className={`${classes.productButton} ${classes.viewCartButton}`}
-				onClick={viewCart}
-			>
-				View Cart
-			</button>
+			<div className={`${classes.titleBar}`} style={{ background: theme.titleColor }}>
+				<label className={classes.label}>Welcome to the {maps.teamMap.get(user.iplTeam)} Fan Store.</label>
+				<img className = {classes.titleImage} src = {logo} alt = "team logo"></img>
+			</div>
 			<main className={classes.productGrid}>
 				{data?.products?.map((product) => (
 					<div
-						key={product.id}
+						key={product._id}
 						className={`${classes.productCard}`}
 						style={{
 							backgroundColor: theme.cardBackground,
@@ -84,9 +97,10 @@ const Dashboard = () => {
 							<button
 								className={`${classes.productButton}`}
 								style={{ backgroundColor: theme.buttonBg }}
-								onClick={() => addToCart(product)} 
+								onClick={() => addToCart(product)}
+								disabled={isLoadingUpdateCart}
 							>
-								Add to Cart
+								{isLoadingUpdateCart ? "Adding..." : "Add to Cart"}
 							</button>
 							<button
 								className={`${classes.productButton}`}
@@ -99,6 +113,13 @@ const Dashboard = () => {
 					</div>
 				))}
 			</main>
+
+			<Modal
+				isOpen={isModalOpen}
+				onClose={handleCloseModal}
+				product={selectedProduct}
+				onConfirm={handleConfirmPurchase}
+			/>
 		</div>
 	);
 };
