@@ -11,6 +11,7 @@ import gtLogo from './gtLogo.jpg';
 
 const teamMap = new Map();
 const logoMap = new Map();
+const nameMap = new Map();
 
 teamMap.set('mumbai-indians', 'MI');
 teamMap.set('chennai-super-kings', 'CSK');
@@ -34,4 +35,15 @@ logoMap.set('rajasthan-royals', rrLogo);
 logoMap.set('lucknow-super-giants', lsgLogo);
 logoMap.set('gujarat-titans', gtLogo);
 
-export default {teamMap, logoMap};
+nameMap.set('mumbai-indians', 'Mumbai Indians');
+nameMap.set('chennai-super-kings', 'Chennai Super Kings');
+nameMap.set('royal-challengers-bangalore', 'Royal Challengers Bangalore');
+nameMap.set('kolkata-knight-riders', 'Kolkata Knight Riders');
+nameMap.set('delhi-capitals', 'Delhi Capitals');
+nameMap.set('sunrisers-hyderabad', 'Sunrisers Hyderabad');
+nameMap.set('punjab-kings', 'Punjab Kings');
+nameMap.set('rajasthan-royals', 'Rajasthan Royals');
+nameMap.set('lucknow-super-giants', 'Lucknow Super Giants');
+nameMap.set('gujarat-titans', 'Gujarat Titans');
+
+export default {teamMap, logoMap, nameMap};
