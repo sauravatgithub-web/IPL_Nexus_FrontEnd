@@ -1,7 +1,7 @@
 import React, { Suspense, lazy, useEffect } from 'react';
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { server } from './Assests/config.js';
+import server from './Assests/config.js';
 import axios from 'axios';
 import { Toaster } from 'react-hot-toast';
 import { userExists, userNotExists } from './redux/reducers/auth.js';
